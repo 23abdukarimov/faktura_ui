@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faktura.uz — Rasmiy tariflar va xizmatlar narxi (Minimalist Figma Style)</title>
+  <meta name="description" content="Faktura.uz tizimidagi barcha tarif rejalari, chiquvchi hujjatlar paketlari va qo'shimcha xizmatlar narxlari bilan tanishing.">
+  
+  <!-- SEO & Social Media Metadata -->
+  <meta property="og:title" content="Faktura.uz — Tariflar va Narxlar">
+  <meta property="og:description" content="Elektron hisob-faktura tizimidagi barcha tariflar, EDO paketlari va qo'shimcha xizmatlar narxlari.">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style-figma.css">
+</head>
+<body class="pricing-page">
+
+  <!-- Header -->
+  <header id="mainHeader" class="glass-header">
+    <div class="container header-container">
+      <a href="index-figma.html" class="logo" id="logoLink">
+        <svg class="logo-svg" viewBox="0 0 100 100" width="40" height="40">
+          <line x1="50" y1="33" x2="33" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          <line x1="50" y1="33" x2="67" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          <line x1="67" y1="50" x2="80" y2="33" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          <line x1="67" y1="50" x2="80" y2="67" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          <line x1="50" y1="67" x2="67" y2="80" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          <line x1="50" y1="67" x2="33" y2="80" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          <line x1="33" y1="50" x2="20" y2="67" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          <line x1="33" y1="50" x2="20" y2="33" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+          
+          <circle cx="50" cy="33" r="6" fill="currentColor" />
+          <circle cx="67" cy="50" r="6" fill="currentColor" />
+          <circle cx="50" cy="67" r="6" fill="currentColor" />
+          <circle cx="33" cy="50" r="6" fill="currentColor" />
+          
+          <circle cx="33" cy="20" r="6" fill="currentColor" />
+          <circle cx="67" cy="20" r="6" fill="currentColor" />
+          <circle cx="80" cy="33" r="6" fill="currentColor" />
+          <circle cx="80" cy="67" r="6" fill="currentColor" />
+          <circle cx="67" cy="80" r="6" fill="currentColor" />
+          <circle cx="33" cy="80" r="6" fill="currentColor" />
+          <circle cx="20" cy="67" r="6" fill="currentColor" />
+          <circle cx="20" cy="33" r="6" fill="currentColor" />
+        </svg>
+        <span class="logo-text">Faktura<span class="logo-accent">.uz</span></span>
+      </a>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="index-figma.html#about" class="nav-link" data-i18n="nav_about">Biz haqimizda</a>
+        <a href="index-figma.html#features" class="nav-link" data-i18n="nav_features">Imkoniyatlar</a>
+        <a href="price-figma.html" class="nav-link" data-i18n="nav_pricing">Tariflar</a>
+        <a href="index-figma.html#faq" class="nav-link" data-i18n="nav_faq">Savollar</a>
+      </nav>
+
+      <!-- Action buttons -->
+      <div class="header-actions">
+        <!-- Live Real-Time Clock -->
+        <div id="liveClock" class="live-clock">00:00:00</div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="action-btn-circle" aria-label="Toggle Theme">
+          <svg class="theme-sun-icon" viewBox="0 0 24 24" width="20" height="20">
+            <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <svg class="theme-moon-icon" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="none" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </button>
+
+        <!-- Language Switcher (With Flag Emojis) -->
+        <div class="lang-selector">
+          <button id="langSelectBtn" class="lang-btn">
+            <span id="currentLangText">🇺🇿 UZ</span>
+            <span class="chevron-down"></span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-opt" data-lang="uz">🇺🇿 O'zbekcha</button>
+            <button class="lang-opt" data-lang="ru">🇷🇺 Русский</button>
+            <button class="lang-opt" data-lang="en">🇬🇧 English</button>
+          </div>
+        </div>
+
+        <!-- CTA Login Button -->
+        <a href="https://account.faktura.uz/Login?" class="btn btn-outline" id="headerLoginBtn" data-i18n="btn_login">Tizimga kirish</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Pricing Details Section -->
+  <section class="pricing-detail-section" id="pricingDetailSection">
+    <div class="container">
+      <div class="section-header reveal reveal-up">
+        <h1 class="pricing-page-title" data-i18n="pricing_title">Faktura.uz Rasmiy Tariflari</h1>
+        <div class="title-underline"></div>
+        <p class="section-subtitle" data-i18n="pricing_page_subtitle">Biznesingiz ehtiyojlariga mos keladigan tarif rejasini tanlang (edo.faktura.uz/price ma'lumotlari asosida)</p>
+
+        <!-- Billing Toggle -->
+        <div class="billing-toggle-container">
+          <span id="billingMonthlyLabel" class="billing-label active" data-i18n="billing_monthly">Oylik</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="billingToggle">
+            <span class="toggle-slider"></span>
+          </label>
+          <span id="billingYearlyLabel" class="billing-label" data-i18n="billing_yearly">Yillik (20% chegirma)</span>
+        </div>
+
+        <!-- Segment Tabs -->
+        <div class="pricing-tabs">
+          <button class="pricing-tab-btn active" id="tabNewTariffs" data-i18n="tab_new_tariffs">Yangi tariflar</button>
+          <button class="pricing-tab-btn" id="tabArchiveTariffs" data-i18n="tab_archive_tariffs">Arxiv tariflar</button>
+          <button class="pricing-tab-btn" id="tabDocPackages" data-i18n="tab_doc_packages">Oylik paketlar</button>
+        </div>
+      </div>
+
+      <!-- YANGI TARIFLAR GRID -->
+      <div class="pricing-grid-container show" id="gridNewTariffs">
+        <div class="pricing-grid grid-4-cols">
+          
+          <!-- EDO 100 -->
+          <div class="pricing-card reveal reveal-scale delay-100">
+            <div class="pricing-plan-name">EDO 100</div>
+            <div class="price-container">
+              <span class="price-value" id="priceEdo100">55,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_basic_desc_new">Eng kichik hajmdagi chiquvchi hujjat aylanmasi uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>100 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_shared_5yr">Arxivda saqlash (5 yil)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 250 -->
+          <div class="pricing-card popular reveal reveal-scale delay-200">
+            <div class="popular-badge" data-i18n="plan_popular_badge">Eng ommabop</div>
+            <div class="pricing-plan-name">EDO 250</div>
+            <div class="price-container">
+              <span class="price-value" id="priceEdo250">240,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_micro_desc">Kichik korxonalar va mikrofirmalar uchun optimal variant.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_3">3 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>250 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_shared_5yr">Arxivda saqlash (5 yil)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-primary btn-glow pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 1000 -->
+          <div class="pricing-card reveal reveal-scale delay-300">
+            <div class="pricing-plan-name">EDO 1000</div>
+            <div class="price-container">
+              <span class="price-value" id="priceEdo1000">790,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_small_desc">O'sib borayotgan faol kichik biznes vakillari uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_5">5 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>1000 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_shared_5yr">Arxivda saqlash (5 yil)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 2500 -->
+          <div class="pricing-card reveal reveal-scale delay-400">
+            <div class="pricing-plan-name">EDO 2500</div>
+            <div class="price-container">
+              <span class="price-value" id="priceEdo2500">1,690,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_medium_desc">Katta hajmdagi hujjat aylanmasi va integratsiya ehtiyojlari uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_10">10 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>2500 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_1c_api">1C integratsiyasi va API</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- CORPORATE EDO -->
+          <div class="pricing-card reveal reveal-scale delay-100">
+            <div class="pricing-plan-name">CORPORATE EDO</div>
+            <div class="price-container">
+              <span class="price-value" id="priceCorpEdo">6,850,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_corp_desc">Yirik korporatsiyalar, filiallar tarmog'iga ega tashkilotlar uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_50">50 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>4500 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_personal_manager">Shaxsiy menejer va Premium API</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- CORPORATE PLUS EDO -->
+          <div class="pricing-card popular reveal reveal-scale delay-200">
+            <div class="popular-badge" data-i18n="plan_popular_badge">Katta Biznes</div>
+            <div class="pricing-plan-name">CORPORATE PLUS EDO</div>
+            <div class="price-container">
+              <span class="price-value" id="priceCorpPlusEdo">10,900,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_corp_plus_desc">O'ta yirik va strategik ahamiyatdagi gigant biznes tarmoqlari uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_100">100 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>9000 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_vip_support">VVIP Call-center va individual yechimlar</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-primary btn-glow pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ARXIV TARIFLAR GRID -->
+      <div class="pricing-grid-container" id="gridArchiveTariffs">
+        <div class="pricing-grid grid-4-cols">
+          
+          <!-- MINI (EDO 50) -->
+          <div class="pricing-card reveal reveal-scale delay-100">
+            <div class="pricing-plan-name">MINI</div>
+            <div class="price-container">
+              <span class="price-value" id="priceArchMini">50,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_mini_desc">Kichik hajmdagi hujjat almashinuvi uchun juda qulay tarif.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>10 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- BASIC -->
+          <div class="pricing-card reveal reveal-scale delay-200">
+            <div class="pricing-plan-name">BASIC</div>
+            <div class="price-container">
+              <span class="price-value" id="priceArchBasic">300,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_basic_desc">Ko'p tarqalgan biznes operatsiyalarini qoplash uchun mo'ljallangan.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_3">3 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>300 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- OPTIMUM -->
+          <div class="pricing-card reveal reveal-scale delay-300">
+            <div class="pricing-plan-name">OPTIMUM</div>
+            <div class="price-container">
+              <span class="price-value" id="priceArchOpt">1,050,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_optimum_desc">Faol ravishda elektron hujjat yuboruvchi tashkilotlar uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_5">5 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>500 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- STANDARD -->
+          <div class="pricing-card reveal reveal-scale delay-400">
+            <div class="pricing-plan-name">STANDARD</div>
+            <div class="price-container">
+              <span class="price-value" id="priceArchStd">1,840,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_standard_desc">Hujjat aylanmasi ko'p va integratsiya talab qilinadigan kompaniyalar uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_10">10 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>1000 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- CORPORATE -->
+          <div class="pricing-card reveal reveal-scale delay-100">
+            <div class="pricing-plan-name">CORPORATE</div>
+            <div class="price-container">
+              <span class="price-value" id="priceArchCorp">6,650,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_corporate_desc">Yirik infratuzilma va keng foydalanuvchilar tarmog'iga ega tashkilotlar uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_50">50 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>2500 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- CORPORATE PLUS -->
+          <div class="pricing-card reveal reveal-scale delay-200">
+            <div class="pricing-plan-name">CORPORATE PLUS</div>
+            <div class="price-container">
+              <span class="price-value" id="priceArchCorpPlus">10,900,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_corp_plus_desc">O'ta yirik va strategik ahamiyatdagi gigant biznes tarmoqlari uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_100">100 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>5000 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- OYLIK PAKETLAR GRID -->
+      <div class="pricing-grid-container" id="gridDocPackages">
+        <div class="pricing-grid grid-4-cols">
+          
+          <!-- EDO 5 -->
+          <div class="pricing-card reveal reveal-scale delay-100">
+            <div class="pricing-plan-name">EDO 5</div>
+            <div class="price-container">
+              <span class="price-value" id="pricePack5">0</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="freeMonth-info">Ro'yxatdan o'ting va quyidagi bepul limitdan foydalaning.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>5 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 50 -->
+          <div class="pricing-card reveal reveal-scale delay-200">
+            <div class="pricing-plan-name">EDO 50</div>
+            <div class="price-container">
+              <span class="price-value" id="pricePack50">45,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_mini_desc">Kichik hajmda chiquvchi hujjat yuboruvchilar uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>50 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 125 -->
+          <div class="pricing-card reveal reveal-scale delay-300">
+            <div class="pricing-plan-name">EDO 125</div>
+            <div class="price-container">
+              <span class="price-value" id="pricePack125">105,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_basic_desc">O'rtacha chiquvchi hujjatlar aylanmasiga ega firmalar uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>125 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 250 -->
+          <div class="pricing-card reveal reveal-scale delay-400">
+            <div class="pricing-plan-name">EDO 250</div>
+            <div class="price-container">
+              <span class="price-value" id="pricePack250">190,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_micro_desc">Mikrofirmalar va yakka tartibdagi tadbirkorlar uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>250 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 500 -->
+          <div class="pricing-card reveal reveal-scale delay-100">
+            <div class="pricing-plan-name">EDO 500</div>
+            <div class="price-container">
+              <span class="price-value" id="pricePack500">345,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_optimum_desc">Chiquvchi hujjatlar limiti kengaytirilgan variant.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>500 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 1000 -->
+          <div class="pricing-card reveal reveal-scale delay-200">
+            <div class="pricing-plan-name">EDO 1000</div>
+            <div class="price-container">
+              <span class="price-value" id="pricePack1000">650,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_standard_desc">Faol chiquvchi hujjat yuboruvchi tashkilotlar uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>1000 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 2500 -->
+          <div class="pricing-card reveal reveal-scale delay-300">
+            <div class="pricing-plan-name">EDO 2500</div>
+            <div class="price-container">
+              <span class="price-value" id="pricePack2500">1,500,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_corporate_desc">O'tta va yirik miqyosdagi tijorat korxonalari uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>2500 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+          <!-- EDO 5000 -->
+          <div class="pricing-card reveal reveal-scale delay-400">
+            <div class="pricing-plan-name">EDO 5000</div>
+            <div class="price-container">
+              <span class="price-value" id="pricePack5000">2,750,000</span>
+              <span class="price-currency" data-i18n="price_currency">so'm</span>
+              <span class="price-period periodLabel">/oy</span>
+            </div>
+            <p class="pricing-desc" data-i18n="plan_corp_plus_desc">Gigant chiquvchi hujjat aylanmasiga ega biznes sub'ektlari uchun.</p>
+            <ul class="pricing-features">
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_users_1">1 tagacha foydalanuvchi</span></li>
+              <li><span class="check-icon">✓</span> <span>5000 <span data-i18n="plan_feat_docs_limit">chiquvchi hujjat / oy</span></span></li>
+              <li><span class="check-icon">✓</span> <span data-i18n="plan_feat_incoming_free">Kiruvchi hujjatlar (Cheksiz & Bepul)</span></li>
+            </ul>
+            <a href="https://account.faktura.uz/Login?" class="btn btn-secondary pricing-btn" data-i18n="btn_choose">Tanlash</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Additional Pricing Terms and Conditions Table -->
+      <div class="additional-prices-container reveal reveal-up">
+        <h2 class="section-title sub-title" data-i18n="add_services_title">Qo'shimcha xizmatlar va shartlar</h2>
+        <div class="title-underline"></div>
+        
+        <div class="additional-services-grid">
+          <div class="service-box reveal reveal-scale delay-100">
+            <div class="service-name">«Перезагрузка» (Qayta yuklash)</div>
+            <div class="service-price">10,000 <span data-i18n="price_currency">so'm</span></div>
+            <p class="service-desc">Chiquvchi hujjatlar limiti to'lib qolganda, to'lovni qayta amalga oshirib paketni oylik muddat tugamasdan yangilash.</p>
+          </div>
+          
+          <div class="service-box reveal reveal-scale delay-200">
+            <div class="service-name">«Архив Менеджер» xizmati</div>
+            <div class="service-price">300,000 <span data-i18n="price_currency">so'm / oy</span></div>
+            <p class="service-desc">Foydalanuvchi uchun arxivlangan hujjatlarni boshqarish xizmati. Dastlabki 15 kun bepul sinov muddati taqdim etiladi.</p>
+          </div>
+
+          <div class="service-box reveal reveal-scale delay-300">
+            <div class="service-name">«Гибридная почта»</div>
+            <div class="service-price">11,500 <span data-i18n="price_currency">so'm / xat</span></div>
+            <p class="service-desc">Qog'oz ko'rinishidagi rasmiy xatlarni pochtaga olib bormasdan, tizim orqali qog'oz formatida chop etib jo'natish.</p>
+          </div>
+
+          <div class="service-box reveal reveal-scale delay-100">
+            <div class="service-name">SMS xabarnomalar</div>
+            <div class="service-price">300 <span data-i18n="price_currency">so'm / SMS</span></div>
+            <p class="service-desc">Hamkorga hujjat yuborilganda yoki hujjat holati o'zgarganda telefoniga SMS xabarnoma jo'natish.</p>
+          </div>
+
+          <div class="service-box reveal reveal-scale delay-200">
+            <div class="service-name">Qo'shimcha foydalanuvchi</div>
+            <div class="service-price">10,000 <span data-i18n="price_currency">so'm / oy</span></div>
+            <p class="service-desc">Tarifda kiritilgan foydalanuvchilar limiti to'gan taqdirda, har bir qo'shimcha foydalanuvchi uchun oylik to'lov.</p>
+          </div>
+
+          <div class="service-box reveal reveal-scale delay-300">
+            <div class="service-name">Korporativ kartani monitoring qilish</div>
+            <div class="service-price">10,000 <span data-i18n="price_currency">so'm / oy</span></div>
+            <p class="service-desc">Har bir monitoring qilinadigan bank korporativ kartalari uchun to'lov.</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer id="mainFooter">
+    <div class="container footer-content-wrap">
+      <!-- Top Row: Logo -->
+      <div class="footer-logo-row">
+        <a href="index-figma.html" class="logo">
+          <svg class="logo-svg" viewBox="0 0 100 100" width="36" height="36">
+            <line x1="50" y1="33" x2="33" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+            <line x1="50" y1="33" x2="67" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+            <line x1="67" y1="50" x2="80" y2="33" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+            <line x1="67" y1="50" x2="80" y2="67" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+            <line x1="50" y1="67" x2="67" y2="80" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+            <line x1="50" y1="67" x2="33" y2="80" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+            <line x1="33" y1="50" x2="20" y2="67" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+            <line x1="33" y1="50" x2="20" y2="33" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+            
+            <circle cx="50" cy="33" r="6" fill="currentColor" />
+            <circle cx="67" cy="50" r="6" fill="currentColor" />
+            <circle cx="50" cy="67" r="6" fill="currentColor" />
+            <circle cx="33" cy="50" r="6" fill="currentColor" />
+            
+            <circle cx="33" cy="20" r="6" fill="currentColor" />
+            <circle cx="67" cy="20" r="6" fill="currentColor" />
+            <circle cx="80" cy="33" r="6" fill="currentColor" />
+            <circle cx="80" cy="67" r="6" fill="currentColor" />
+            <circle cx="67" cy="80" r="6" fill="currentColor" />
+            <circle cx="33" cy="80" r="6" fill="currentColor" />
+            <circle cx="20" cy="67" r="6" fill="currentColor" />
+            <circle cx="20" cy="33" r="6" fill="currentColor" />
+          </svg>
+          <span class="logo-text">Faktura<span class="logo-accent">.uz</span></span>
+        </a>
+      </div>
+
+      <!-- Middle Row: 3 Link Columns -->
+      <div class="footer-links-grid">
+        <div class="footer-links-col">
+          <a href="index-figma.html#about" class="footer-link" data-i18n="foot_link_about">Biz haqimizda</a>
+          <a href="index-figma.html#features" class="footer-link" data-i18n="foot_link_services">Xizmatlar</a>
+        </div>
+        <div class="footer-links-col">
+          <a href="#" class="footer-link" data-i18n="foot_link_news">Kompaniya yangiliklari</a>
+          <a href="#" class="footer-link" data-i18n="foot_link_info">Ma'lumot joylashtirish</a>
+        </div>
+        <div class="footer-links-col">
+          <a href="#" class="footer-link" data-i18n="foot_link_cases">Keyslarni ko'rish</a>
+          <a href="#" class="footer-link" data-i18n="foot_link_oferta">Ommaviy oferta</a>
+        </div>
+      </div>
+
+      <!-- Bottom Row: Contacts Left, Copyright Right -->
+      <div class="footer-bottom-row">
+        <div class="footer-contacts">
+          <a href="tel:+998712000013" class="contact-phone">+998 71 200 00 13</a>
+          <span class="contact-address" data-i18n="footer_address">
+            Toshkent shahri, Shayxontohur tumani, Turkqo'rg'on ko'chasi, 6-tor ko'cha, 31-uy
+          </span>
+        </div>
+        <div class="footer-copyright">
+          <p class="copyright">&copy; Faktura.uz 2025. <span data-i18n="footer_copy">Barcha huquqlar himoyalangan</span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="app-figma.js"></script>
+</body>
+</html>
