@@ -25,7 +25,7 @@
   <header id="mainHeader" class="glass-header">
     <div class="container header-container">
       <a href="index.html" class="logo" id="logoLink">
-        <svg class="logo-svg" viewBox="0 0 100 100" width="40" height="40">
+        <svg class="logo-svg logo-unloaded" viewBox="0 0 100 100" width="40" height="40">
           <line x1="50" y1="33" x2="33" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
           <line x1="50" y1="33" x2="67" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
           <line x1="67" y1="50" x2="80" y2="33" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
@@ -58,10 +58,27 @@
         <a href="index.html#features" class="nav-link" data-i18n="nav_features">Imkoniyatlar</a>
         <a href="price.html" class="nav-link" data-i18n="nav_pricing">Tariflar</a>
         <a href="index.html#faq" class="nav-link" data-i18n="nav_faq">Savollar</a>
+        <a href="https://account.faktura.uz/Login?" class="btn btn-outline mobile-nav-login" data-i18n="btn_login">Tizimga kirish</a>
+        
+        <!-- Mobile Accent Theme Film Strip -->
+        <div class="film-strip-selector">
+          <div class="film-swatch swatch-lime active" data-theme="lime" title="Lime Green"></div>
+          <div class="film-swatch swatch-blue" data-theme="blue" title="Electric Blue"></div>
+          <div class="film-swatch swatch-pink" data-theme="pink" title="Cyber Pink"></div>
+          <div class="film-swatch swatch-purple" data-theme="purple" title="Neon Purple"></div>
+        </div>
       </nav>
 
       <!-- Action buttons -->
       <div class="header-actions">
+        <!-- Accent Theme Film Strip -->
+        <div class="film-strip-selector">
+          <div class="film-swatch swatch-lime active" data-theme="lime" title="Lime Green"></div>
+          <div class="film-swatch swatch-blue" data-theme="blue" title="Electric Blue"></div>
+          <div class="film-swatch swatch-pink" data-theme="pink" title="Cyber Pink"></div>
+          <div class="film-swatch swatch-purple" data-theme="purple" title="Neon Purple"></div>
+        </div>
+
         <!-- Theme Toggle -->
         <button id="themeToggleBtn" class="action-btn-circle" aria-label="Toggle Theme">
           <svg class="theme-sun-icon" viewBox="0 0 24 24" width="20" height="20">
@@ -352,7 +369,10 @@
       </div>
 
       <!-- OYLIK PAKETLAR GRID -->
-      <div class="pricing-g          <!-- EDO 5 -->
+      <div class="pricing-grid-container" id="gridDocPackages">
+        <div class="pricing-grid grid-4-cols">
+          
+          <!-- EDO 5 -->
           <div class="pricing-card reveal reveal-scale delay-100">
             <div class="pricing-plan-name">EDO 5</div>
             <div class="price-container">

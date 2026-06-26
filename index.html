@@ -28,7 +28,7 @@
   <header id="mainHeader" class="glass-header">
     <div class="container header-container">
       <a href="#" class="logo" id="logoLink">
-        <svg class="logo-svg" viewBox="0 0 100 100" width="40" height="40">
+        <svg class="logo-svg logo-unloaded" viewBox="0 0 100 100" width="40" height="40">
           <!-- Connections -->
           <line x1="50" y1="33" x2="33" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
           <line x1="50" y1="33" x2="67" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
@@ -64,10 +64,27 @@
         <a href="#features" class="nav-link" data-i18n="nav_features">Imkoniyatlar</a>
         <a href="price.html" class="nav-link" data-i18n="nav_pricing">Tariflar</a>
         <a href="#faq" class="nav-link" data-i18n="nav_faq">Savollar</a>
+        <a href="https://account.faktura.uz/Login?" class="btn btn-outline mobile-nav-login" data-i18n="btn_login">Tizimga kirish</a>
+        
+        <!-- Mobile Accent Theme Film Strip -->
+        <div class="film-strip-selector">
+          <div class="film-swatch swatch-lime active" data-theme="lime" title="Lime Green"></div>
+          <div class="film-swatch swatch-blue" data-theme="blue" title="Electric Blue"></div>
+          <div class="film-swatch swatch-pink" data-theme="pink" title="Cyber Pink"></div>
+          <div class="film-swatch swatch-purple" data-theme="purple" title="Neon Purple"></div>
+        </div>
       </nav>
 
       <!-- Action buttons (Theme, Lang, Login) -->
       <div class="header-actions">
+        <!-- Accent Theme Film Strip -->
+        <div class="film-strip-selector">
+          <div class="film-swatch swatch-lime active" data-theme="lime" title="Lime Green"></div>
+          <div class="film-swatch swatch-blue" data-theme="blue" title="Electric Blue"></div>
+          <div class="film-swatch swatch-pink" data-theme="pink" title="Cyber Pink"></div>
+          <div class="film-swatch swatch-purple" data-theme="purple" title="Neon Purple"></div>
+        </div>
+
         <!-- Theme Toggle -->
         <button id="themeToggleBtn" class="action-btn-circle" aria-label="Toggle Theme">
           <svg class="theme-sun-icon" viewBox="0 0 24 24" width="20" height="20">
@@ -109,7 +126,7 @@
   <section class="hero" id="heroSection">
     <div class="container hero-container">
       <div class="hero-content reveal reveal-left">
-        <h1 class="hero-title" data-i18n="hero_title">
+        <h1 class="hero-title kinetic-title" data-i18n="hero_title">
           Biznesingiz uchun <span class="neon-text">zamonaviy</span> elektron hujjat aylanishi
         </h1>
         <p class="hero-desc" data-i18n="hero_desc">
