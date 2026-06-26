@@ -175,6 +175,7 @@ html.light #mainHeader.glass-header {
   color: var(--text-muted);
   position: relative;
   padding: 6px 0;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -2155,4 +2156,11 @@ html.light #mainFooter {
 .nav-overlay.active {
   display: block;
   opacity: 1;
+}
+
+/* Hide mobile-nav-login on desktop screens */
+@media screen and (min-width: 769px) {
+  .mobile-nav-login {
+    display: none !important;
+  }
 }
