@@ -414,6 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initKineticTypography();
   initLogoAnimation();
+  initRisoCursorTrail();
   initFilmStripSelector();
 });
 
@@ -788,7 +789,112 @@ function initLogoAnimation() {
   logos.forEach(logo => observer.observe(logo));
 }
 
-
+/**
+ * Risograph dot trail cursor canvas rendering
+ */
+function initRisoCursorTrail() {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'risoCanvas';
+  Object.assign(canvas.style, {
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    width: '100vw',
+    height: '100vh',
+    pointerEvents: 'none',
+    zIndex: '9999'
+  });
+  document.body.appendChild(canvas);
+  
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  
+  let lastX = null;
+  let lastY = null;
+  
+  window.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    
+    if (lastX !== null && lastY !== null) {
+      const dist = Math.hypot(x - lastX, y - lastY);
+      const steps = Math.min(Math.floor(dist / 5), 8);
+      for (let i = 0; i <= steps; i++) {
+        const t = steps === 0 ? 0 : i / steps;
+        const px = lastX + (x - lastX) * t;
+        const py = lastY + (y - lastY) * t;
+        
+        particles.push(createParticle(px, py, true));
+        
+        if (Math.random() < 0.4) {
+          const angle = Math.random() * Math.PI * 2;
+          const radius = Math.random() * 15 + 5;
+          const sx = px + Math.cos(angle) * radius;
+          const sy = py + Math.sin(angle) * radius;
+          particles.push(createParticle(sx, sy, false));
+        }
+      }
+    }
+    lastX = x;
+    lastY = y;
+  });
+  
+  window.addEventListener('mouseout', () => {
+    lastX = null;
+    lastY = null;
+  });
+  
+  function createParticle(x, y, isMain) {
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#73E047';
+    return {
+      x,
+      y,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4 - (isMain ? 0.2 : 0),
+      radius: isMain ? Math.random() * 4 + 3 : Math.random() * 1.5 + 0.5,
+      color: accentColor,
+      opacity: 1,
+      decay: isMain ? Math.random() * 0.03 + 0.02 : Math.random() * 0.05 + 0.04
+    };
+  }
+  
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.opacity -= p.decay;
+      
+      if (p.opacity <= 0) {
+        particles.splice(i, 1);
+        continue;
+      }
+      
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = p.radius * 1.5;
+      
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
 
 /**
  * Film Strip Accent Switcher logic
