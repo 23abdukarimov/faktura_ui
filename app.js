@@ -414,6 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initKineticTypography();
   initLogoAnimation();
+  initFilmStripSelector();
 });
 
 /* ==========================================================================
@@ -789,6 +790,41 @@ function initLogoAnimation() {
 
 
 
-
+/**
+ * Film Strip Accent Switcher logic
+ */
+function initFilmStripSelector() {
+  const swatches = document.querySelectorAll('.film-swatch');
+  if (swatches.length === 0) return;
+  
+  let activeAccent = localStorage.getItem('faktura_accent_theme') || 'lime';
+  applyAccentTheme(activeAccent);
+  
+  swatches.forEach(swatch => {
+    swatch.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const theme = swatch.dataset.theme;
+      activeAccent = theme;
+      localStorage.setItem('faktura_accent_theme', theme);
+      applyAccentTheme(theme);
+    });
+  });
+  
+  function applyAccentTheme(themeName) {
+    const themes = ['lime', 'blue', 'pink', 'purple'];
+    themes.forEach(t => {
+      document.documentElement.classList.remove(`theme-${t}`);
+    });
+    document.documentElement.classList.add(`theme-${themeName}`);
+    
+    swatches.forEach(s => {
+      if (s.dataset.theme === themeName) {
+        s.classList.add('active');
+      } else {
+        s.classList.remove('active');
+      }
+    });
+  }
+}
 
 
