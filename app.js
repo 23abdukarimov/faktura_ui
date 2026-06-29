@@ -412,10 +412,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initPricing();
   initNavbar();
   initScrollReveal();
-  initKineticTypography();
-  initLogoAnimation();
-  initRisoCursorTrail();
-  initFilmStripSelector();
 });
 
 /* ==========================================================================
@@ -493,9 +489,6 @@ function updateLanguage(lang) {
 
   document.documentElement.setAttribute('lang', lang);
   updatePrices();
-  
-  // Re-apply kinetic typography animation when language changes
-  initKineticTypography();
 }
 
 /* ==========================================================================
@@ -532,29 +525,12 @@ function initPricing() {
   const gridPackages = document.getElementById('gridDocPackages');
 
   if (tabNew && tabArchive && tabPackages) {
-    // Hide others initially on page load
-    if (gridArchive) gridArchive.style.display = 'none';
-    if (gridPackages) gridPackages.style.display = 'none';
-    if (gridNew) {
-      gridNew.style.display = 'block';
-      gridNew.classList.add('show');
-    }
-
     const activateTab = (activeTab, activeGrid) => {
       [tabNew, tabArchive, tabPackages].forEach(t => t.classList.remove('active'));
-      [gridNew, gridArchive, gridPackages].forEach(g => {
-        if (g) {
-          g.classList.remove('show');
-          g.style.display = 'none';
-        }
-      });
+      [gridNew, gridArchive, gridPackages].forEach(g => { if (g) g.classList.remove('show'); });
 
       activeTab.classList.add('active');
-      if (activeGrid) {
-        activeGrid.style.display = 'block';
-        activeGrid.offsetHeight; // Force reflow
-        activeGrid.classList.add('show');
-      }
+      if (activeGrid) activeGrid.classList.add('show');
     };
 
     tabNew.addEventListener('click', () => activateTab(tabNew, gridNew));
@@ -709,228 +685,4 @@ function initScrollReveal() {
     observer.observe(el);
   });
 }
-
-/* ==========================================================================
-   Advanced Animations & Interactive Effects
-   ========================================================================== */
-
-/**
- * Kinetic Typography logic for Hero Title
- */
-function initKineticTypography() {
-  const title = document.querySelector('.kinetic-title');
-  if (!title) return;
-  
-  applyKineticSplit(title);
-}
-
-function applyKineticSplit(element, counter = { value: 0 }) {
-  const nodes = Array.from(element.childNodes);
-  element.innerHTML = '';
-  
-  nodes.forEach(node => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      const fragment = document.createDocumentFragment();
-      const text = node.textContent;
-      const words = text.split(/(\s+)/);
-      
-      words.forEach(word => {
-        if (word.trim() === '') {
-          fragment.appendChild(document.createTextNode(word));
-        } else {
-          const wordSpan = document.createElement('span');
-          wordSpan.className = 'kinetic-word';
-          
-          for (let i = 0; i < word.length; i++) {
-            const charSpan = document.createElement('span');
-            charSpan.className = 'kinetic-char';
-            charSpan.textContent = word[i];
-            charSpan.style.transitionDelay = `${counter.value * 30}ms`;
-            wordSpan.appendChild(charSpan);
-            counter.value++;
-          }
-          fragment.appendChild(wordSpan);
-        }
-      });
-      element.appendChild(fragment);
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      const clone = node.cloneNode(true);
-      applyKineticSplit(clone, counter);
-      element.appendChild(clone);
-    }
-  });
-  
-  // Trigger animation after splitting
-  requestAnimationFrame(() => {
-    element.querySelectorAll('.kinetic-char').forEach(char => {
-      char.classList.add('reveal');
-    });
-  });
-}
-
-/**
- * SVG Logo self-drawing animation (Intersection Observer)
- */
-function initLogoAnimation() {
-  const logos = document.querySelectorAll('.logo-svg');
-  if (logos.length === 0) return;
-  
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const svg = entry.target;
-        svg.classList.remove('logo-unloaded');
-        svg.classList.add('animate-logo');
-        obs.unobserve(svg);
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  logos.forEach(logo => observer.observe(logo));
-}
-
-/**
- * Risograph dot trail cursor canvas rendering
- */
-function initRisoCursorTrail() {
-  const canvas = document.createElement('canvas');
-  canvas.id = 'risoCanvas';
-  Object.assign(canvas.style, {
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    width: '100vw',
-    height: '100vh',
-    pointerEvents: 'none',
-    zIndex: '9999'
-  });
-  document.body.appendChild(canvas);
-  
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-  
-  let lastX = null;
-  let lastY = null;
-  
-  window.addEventListener('mousemove', (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
-    
-    if (lastX !== null && lastY !== null) {
-      const dist = Math.hypot(x - lastX, y - lastY);
-      const steps = Math.min(Math.floor(dist / 5), 8);
-      for (let i = 0; i <= steps; i++) {
-        const t = steps === 0 ? 0 : i / steps;
-        const px = lastX + (x - lastX) * t;
-        const py = lastY + (y - lastY) * t;
-        
-        particles.push(createParticle(px, py, true));
-        
-        if (Math.random() < 0.4) {
-          const angle = Math.random() * Math.PI * 2;
-          const radius = Math.random() * 15 + 5;
-          const sx = px + Math.cos(angle) * radius;
-          const sy = py + Math.sin(angle) * radius;
-          particles.push(createParticle(sx, sy, false));
-        }
-      }
-    }
-    lastX = x;
-    lastY = y;
-  });
-  
-  window.addEventListener('mouseout', () => {
-    lastX = null;
-    lastY = null;
-  });
-  
-  function createParticle(x, y, isMain) {
-    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#73E047';
-    return {
-      x,
-      y,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4 - (isMain ? 0.2 : 0),
-      radius: isMain ? Math.random() * 4 + 3 : Math.random() * 1.5 + 0.5,
-      color: accentColor,
-      opacity: 1,
-      decay: isMain ? Math.random() * 0.03 + 0.02 : Math.random() * 0.05 + 0.04
-    };
-  }
-  
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    for (let i = particles.length - 1; i >= 0; i--) {
-      const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.opacity -= p.decay;
-      
-      if (p.opacity <= 0) {
-        particles.splice(i, 1);
-        continue;
-      }
-      
-      ctx.save();
-      ctx.globalAlpha = p.opacity;
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = p.radius * 1.5;
-      
-      ctx.fillStyle = p.color;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-    
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-
-/**
- * Film Strip Accent Switcher logic
- */
-function initFilmStripSelector() {
-  const swatches = document.querySelectorAll('.film-swatch');
-  if (swatches.length === 0) return;
-  
-  let activeAccent = localStorage.getItem('faktura_accent_theme') || 'lime';
-  applyAccentTheme(activeAccent);
-  
-  swatches.forEach(swatch => {
-    swatch.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const theme = swatch.dataset.theme;
-      activeAccent = theme;
-      localStorage.setItem('faktura_accent_theme', theme);
-      applyAccentTheme(theme);
-    });
-  });
-  
-  function applyAccentTheme(themeName) {
-    const themes = ['lime', 'blue', 'pink', 'purple'];
-    themes.forEach(t => {
-      document.documentElement.classList.remove(`theme-${t}`);
-    });
-    document.documentElement.classList.add(`theme-${themeName}`);
-    
-    swatches.forEach(s => {
-      if (s.dataset.theme === themeName) {
-        s.classList.add('active');
-      } else {
-        s.classList.remove('active');
-      }
-    });
-  }
-}
-
 
